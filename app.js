@@ -12,4 +12,4 @@ app.get("/",(request,response)=>{
    
   response.send(arr)
 })
-app.listen(3001)
+app.listen(process.env.PORT)
