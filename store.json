@@ -1,11 +1,11 @@
 [
-    {"id":1, "freeTickets":18,"isWeekend":false,"weekOfDay":"Вт"},
+    {"id":1, "freeTickets":20,"isWeekend":false,"weekOfDay":"Вт"},
     {"id":2, "freeTickets":7,"isWeekend":false,"weekOfDay":"Вт"},
     {"id":3, "freeTickets":0,"isWeekend":false,"weekOfDay":"Ср"},
     {"id":4, "freeTickets":18,"isWeekend":false,"weekOfDay":"Чт"},
     {"id":5, "freeTickets":12,"isWeekend":false,"weekOfDay":"Пт"},
     {"id":6, "freeTickets":5,"isWeekend":false,"weekOfDay":"Сб"},
-    {"id":7, "freeTickets":8,"isWeekend":false,"weekOfDay":"Вс"},
+    {"id":7, "freeTickets":9,"isWeekend":false,"weekOfDay":"Вс"},
     {"id":8, "freeTickets":45,"isWeekend":false,"weekOfDay":"Пн"},
     {"id":9, "freeTickets":12,"isWeekend":false,"weekOfDay":"Вт"},
     {"id":10,"freeTickets":0,"isWeekend":false,"weekOfDay":"Ср"},
