@@ -42,18 +42,18 @@ const app = express()
 app.use(cors())
 app.use(express.json());
 
-// app.post("/insert/:name/:email:/:dateReservation/:countTickets/:phone", function(req, res){
-// app.post("/insert", urlencodedParser,function(req, res){
-//   pool.query("INSERT INTO `tickets` (`email`, `name`, `date`, `phone`, `countTickets`, `summ`, `active`, `dateOrder`) VALUES ('"+req.body.valueEmail+"', '"+req.body.valueName+"',  DATE_ADD('"+req.body.valueDateReservation+"', INTERVAL 3 HOUR), '"+req.body.valuePhone+"', '"+req.body.countTickets+"', '0', '1', DATE_ADD(NOW(), INTERVAL 3 HOUR));", function(err, results) {
-//     if(err) console.log(err);
-//      console.log(req.body.obj)
-//   });
 
 app.post("/insert", urlencodedParser,function(req, res){
-  pool.query("INSERT INTO `tickets` (`email`, `name`, `date`, `phone`, `countTickets`, `summ`, `active`, `dateOrder`) VALUES ('"+req.body.valueEmail+"', '"+req.body.valueName+"',  '"+req.body.valueDateReservation+"', '"+req.body.valuePhone+"', '"+req.body.countTickets+"', '0', '1', DATE_ADD(NOW(), INTERVAL 3 HOUR));", function(err, results) {
+  pool.query("INSERT INTO `tickets` (`email`, `name`, `date`, `phone`, `countTickets`, `summ`, `active`, `dateOrder`) VALUES ('"+req.body.valueEmail+"', '"+req.body.valueName+"',  DATE_ADD('"+req.body.valueDateReservation+"', INTERVAL 3 HOUR), '"+req.body.valuePhone+"', '"+req.body.countTickets+"', '0', '1', DATE_ADD(NOW(), INTERVAL 3 HOUR));", function(err, results) {
     if(err) console.log(err);
      console.log(req.body.obj)
   });
+
+// app.post("/insert", urlencodedParser,function(req, res){
+//   pool.query("INSERT INTO `tickets` (`email`, `name`, `date`, `phone`, `countTickets`, `summ`, `active`, `dateOrder`) VALUES ('"+req.body.valueEmail+"', '"+req.body.valueName+"',  '"+req.body.valueDateReservation+"', '"+req.body.valuePhone+"', '"+req.body.countTickets+"', '0', '1', DATE_ADD(NOW(), INTERVAL 3 HOUR));", function(err, results) {
+//     if(err) console.log(err);
+//      console.log(req.body.obj)
+//   });
 
 
 
@@ -79,5 +79,5 @@ pool.query("SELECT DATE_FORMAT(fixPlaces.date, '%d-%m-%Y') as dmw,DATE_FORMAT(fi
 });
 })
 
-app.listen(process.env.PORT)
-// app.listen(3001)
+// app.listen(process.env.PORT)
+app.listen(3001)
