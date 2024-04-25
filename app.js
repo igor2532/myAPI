@@ -79,5 +79,5 @@ pool.query("SELECT DATE_FORMAT(fixPlaces.date, '%d-%m-%Y') as dmw,DATE_FORMAT(fi
 });
 })
 
-// app.listen(process.env.PORT)
-app.listen(3001)
+app.listen(process.env.PORT)
+// app.listen(3001)
