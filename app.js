@@ -100,5 +100,5 @@ pool.query("SELECT * FROM `tickets` ORDER BY `dateOrder` DESC", function(err, re
 
 
 
-// app.listen(process.env.PORT)
-app.listen(3001)
+app.listen(process.env.PORT)
+// app.listen(3001)
