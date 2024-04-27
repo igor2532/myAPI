@@ -62,7 +62,7 @@ app.post("/insert", urlencodedParser,function(req, res){
      console.log(req.body.obj)
     });
   })
-  
+   
 
 
 app.get("/dates/:date", function(req, res){
@@ -91,7 +91,26 @@ pool.query("SELECT * FROM `tickets` ORDER BY `dateOrder` DESC", function(err, re
 
 
 
+// app.get("/addmonth/:month", urlencodedParser,function(req, res){
+ 
+//     for (let index = 1; index < 9; index++) {
+//       pool.query("INSERT INTO `fixPlaces` (`id`, `date`, `count`) VALUES (NULL, '2024-"+req.params.month+"-0"+index+" 11:00:00', '0');", function(err, results) {
+//         if(err) console.log(err);
+//          console.log(req.body.obj)
+//         });
+      
+//     }
+   
+    
+     
+   
 
+
+
+
+
+  // })
+   
 
 
 
