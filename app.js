@@ -73,8 +73,8 @@ app.get("/dates/:date", function(req, res){
 });
 
 
-app.get("/",(request,response)=>{
-pool.query("SELECT IF(NOW()>fixPlaces.date,'1','0') as isCloseReserv, DATE_FORMAT(fixPlaces.date, '%d-%m-%Y') as dmw,DATE_FORMAT(fixPlaces.date, '%w') as week, DATE_FORMAT(fixPlaces.date, '%d') as day, DATE_FORMAT(fixPlaces.date, '%m-%Y') as dateMonth,date(fixPlaces.date) as dateValue,IFNULL((SELECT sum(fixPlaces.count) FROM fixPlaces WHERE DATE_FORMAT(fixPlaces.date, '%m-%Y') = '04-2024' AND DATE_FORMAT(fixPlaces.date, '%d-%m-%Y') = DATE_FORMAT(tickets.date, '%d-%m-%Y') ),SUM(fixPlaces.count))-SUM(IFNULL(IF(tickets.active,tickets.countTickets, IF( DATE_ADD(tickets.dateOrder, INTERVAL 1 DAY) > DATE_ADD(NOW(), INTERVAL 3 HOUR),tickets.countTickets,0) ),0)) as countsFreeTickets FROM fixPlaces LEFT JOIN tickets ON fixPlaces.date = tickets.date WHERE DATE_FORMAT(fixPlaces.date, '%m-%Y') = '04-2024' GROUP BY date(fixPlaces.date) order by fixPlaces.date ASC;", function(err, results) {
+app.get("/api/:date",(request,response)=>{
+pool.query("SELECT IF(NOW()>fixPlaces.date,'1','0') as isCloseReserv, DATE_FORMAT(fixPlaces.date, '%d-%m-%Y') as dmw,DATE_FORMAT(fixPlaces.date, '%w') as week, DATE_FORMAT(fixPlaces.date, '%d') as day, DATE_FORMAT(fixPlaces.date, '%m-%Y') as dateMonth,date(fixPlaces.date) as dateValue,IFNULL((SELECT sum(fixPlaces.count) FROM fixPlaces WHERE DATE_FORMAT(fixPlaces.date, '%m-%Y') = '"+req.params.date+"' AND DATE_FORMAT(fixPlaces.date, '%d-%m-%Y') = DATE_FORMAT(tickets.date, '%d-%m-%Y') ),SUM(fixPlaces.count))-SUM(IFNULL(IF(tickets.active,tickets.countTickets, IF( DATE_ADD(tickets.dateOrder, INTERVAL 1 DAY) > DATE_ADD(NOW(), INTERVAL 3 HOUR),tickets.countTickets,0) ),0)) as countsFreeTickets FROM fixPlaces LEFT JOIN tickets ON fixPlaces.date = tickets.date WHERE DATE_FORMAT(fixPlaces.date, '%m-%Y') = '"+req.params.date+"' GROUP BY date(fixPlaces.date) order by fixPlaces.date ASC;", function(err, results) {
   if(err) console.log(err);
   response.send(results)
 });
@@ -100,5 +100,5 @@ pool.query("SELECT * FROM `tickets` ORDER BY `dateOrder` DESC", function(err, re
 
 
 
-app.listen(process.env.PORT)
-// app.listen(3001)
+// app.listen(process.env.PORT)
+app.listen(3001)
