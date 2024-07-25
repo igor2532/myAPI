@@ -18,7 +18,7 @@ const pool = mysql.createPool({
 
   user: "freedb_igor_s",
   database: "freedb_sivgdpot",
-  password: "z#Rf9m6ne!UufkP"
+  password: "qm$75B&Nhya$%QY"
 });
  
 // добавление объекта
@@ -119,5 +119,5 @@ pool.query("SELECT * FROM `tickets` ORDER BY `dateOrder` DESC", function(err, re
 
 
 
-app.listen(process.env.PORT)
-// app.listen(3001)
+// app.listen(process.env.PORT)
+app.listen(3000)
