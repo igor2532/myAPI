@@ -14,11 +14,11 @@ const corsOptions ={
 
 const pool = mysql.createPool({
   connectionLimit: 5,
-  host: "sql.freedb.tech",
+  host: "192.168.155.9",
 
-  user: "freedb_igor_s",
+  user: "root",
   database: "freedb_sivgdpot",
-  password: "qm$75B&Nhya$%QY"
+  password: ""
 });
  
 // добавление объекта
@@ -57,12 +57,20 @@ app.post("/deleteTicket", urlencodedParser,function(req, res){
 
 
 app.post("/insert", urlencodedParser,function(req, res){
-  pool.query("INSERT INTO `tickets` (`email`, `name`, `date`, `phone`, `countTickets`, `summ`, `active`, `dateOrder`) VALUES ('"+req.body.valueEmail+"', '"+req.body.valueName+"',  DATE_ADD('"+req.body.valueDateReservation+"', INTERVAL 3 HOUR), '"+req.body.valuePhone+"', '"+req.body.countTickets+"', '0', '1', DATE_ADD(NOW(), INTERVAL 3 HOUR));", function(err, results) {
+  pool.query("INSERT INTO `tickets` (`email`, `name`, `date`, `phone`, `countTickets`, `summ`, `active`, `dateOrder`) VALUES ('"+req.body.valueEmail+"', '"+req.body.valueName+"',  DATE_ADD('"+req.body.valueDateReservation+"', INTERVAL 0 HOUR), '"+req.body.valuePhone+"', '"+req.body.countTickets+"', '0', '1', DATE_ADD(NOW(), INTERVAL 0 HOUR));", function(err, results) {
     if(err) console.log(err);
      console.log(req.body.obj)
     });
   })
    
+
+
+  app.post("/insertFixDate", urlencodedParser,function(req, res){
+    pool.query("INSERT INTO `fixPlaces` (`date`, `count`,`countsFreeTickets`) VALUES ('"+req.body.dateTimeValue+"', '"+req.body.countTickets+"','"+req.body.countTickets+"');", function(err, results) {
+      if(err) console.log(err);
+       console.log(req.body.obj)
+      });
+    })
 
 
 app.get("/dates/:date", function(req, res){
@@ -88,36 +96,13 @@ pool.query("SELECT * FROM `tickets` ORDER BY `dateOrder` DESC", function(err, re
 });
 })
 
+app.get("/fixticketsadmin/",(request,response)=>{
+  pool.query("SELECT date,count,countsFreeTickets FROM `fixplaces` ORDER BY `date` DESC", function(err, results) {
+    if(err) console.log(err);
+    response.send(results)
+  });
+  })
 
 
 
-// app.get("/addmonth/:month", urlencodedParser,function(req, res){
- 
-//     for (let index = 1; index < 9; index++) {
-//       pool.query("INSERT INTO `fixPlaces` (`id`, `date`, `count`) VALUES (NULL, '2024-"+req.params.month+"-0"+index+" 11:00:00', '0');", function(err, results) {
-//         if(err) console.log(err);
-//          console.log(req.body.obj)
-//         });
-      
-//     }
-   
-    
-     
-   
-
-
-
-
-
-  // })
-   
-
-
-
-
-
-
-
-
-// app.listen(process.env.PORT)
 app.listen(3000)
